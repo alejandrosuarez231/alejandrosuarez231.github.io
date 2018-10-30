@@ -1,10 +1,7 @@
-# @italomoralesf - My simple CV
+# Mi hoja de vida 
 
-_CEO & Founder community of web programmers Rimorsoft Online._
+_Ingeniero en Informatica y Desarrollador web._
 
-## Gratitude
-
-_Our community of web programmers **Rimorsoft Online**_
 
 ---
 _file v1.0_
