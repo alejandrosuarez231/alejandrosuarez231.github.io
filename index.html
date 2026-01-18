@@ -4,159 +4,578 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Xavier Campechano | Fullstack Engineer & IT Specialist</title>
+
+  <title>Xavier Campechano | Senior IT Engineer & Fullstack Developer</title>
+  <meta name="description"
+    content="Portafolio de Xavier Campechano. Ingeniero con +12 años de experiencia en Liderazgo Técnico, Desarrollo Fullstack (Laravel), Infraestructura de Redes y Tecnología Médica (DICOM/PACS). Scrum Master.">
+  <meta name="keywords"
+    content="Ingeniero Informática, Fullstack Developer, Laravel, IT Support Coordinator, Network Administration, TP-Link Omada, DICOM, PACS, Medical Technology, Scrum Master, Project Lead, Process Automation">
+  <meta property="og:title" content="Xavier Campechano - Senior IT & Dev Profile">
+  <meta property="og:image" content="img/profile.png">
+
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          screens: {
+            'print': { 'raw': 'print' },
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
   <style>
     body {
       font-family: 'Inter', sans-serif;
     }
 
+    .bg-grid-pattern {
+      background-image: linear-gradient(to right, #ffffff05 1px, transparent 1px),
+        linear-gradient(to bottom, #ffffff05 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
     .glass {
-      background: rgba(15, 23, 42, 0.8);
-      backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
     .text-gradient {
       background: linear-gradient(to right, #4ade80, #22d3ee);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* --- ESTILOS PARA IMPRESIÓN (PDF) --- */
+    @media print {
+
+      /* Ocultar elementos no deseados en el PDF */
+      nav,
+      footer,
+      .no-print,
+      #contact-cta-section {
+        display: none !important;
+      }
+
+      /* Resetear colores para papel blanco */
+      body,
+      section {
+        background: white !important;
+        color: #1e293b !important;
+        /* Slate-800 */
+        padding-top: 0 !important;
+        padding-bottom: 2rem !important;
+      }
+
+      /* Asegurar que los textos blancos sean oscuros */
+      .text-white,
+      .text-slate-300,
+      .text-slate-400 {
+        color: #1e293b !important;
+      }
+
+      /* Ajustar títulos */
+      h1,
+      h2,
+      h3 {
+        color: #0f172a !important;
+        /* Slate-950 */
+        page-break-after: avoid;
+      }
+
+      /* Forzar la impresión de fondos de colores (para badges) */
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      /* Ajustes de layout para impresión */
+      .container {
+        max-width: 100% !important;
+        padding: 0 1rem !important;
+      }
+
+      /* Evitar cortes raros de página */
+      .print-break-inside-avoid {
+        break-inside: avoid;
+      }
+
+      /* Simplificar el Hero para impresión */
+      #about {
+        min-height: auto !important;
+        padding-top: 2rem !important;
+        text-align: left !important;
+      }
+
+      #about .md\:text-left {
+        text-align: left !important;
+      }
+
+      #about .justify-center {
+        justify-content: flex-start !important;
+      }
+
+      #hero-image-container {
+        display: none !important;
+      }
+
+      /* Ocultar foto grande en impresión para ahorrar espacio/tinta */
+
+      /* Estilo simple para enlaces en impresión */
+      a {
+        text-decoration: none !important;
+        color: #0f172a !important;
+      }
+
+      a[href^="http"]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.8rem;
+        color: #64748b;
+      }
     }
   </style>
 </head>
 
-<body class="bg-slate-950 text-slate-300">
+<body class="bg-slate-950 text-slate-300 bg-grid-pattern relative overflow-x-hidden">
 
-  <nav class="fixed w-full z-50 glass border-b border-white/5">
+  <nav class="fixed w-full z-50 glass border-b border-white/5 transition-all duration-300 no-print">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <span class="text-xl font-bold text-white tracking-tighter">XC<span class="text-green-400">.</span></span>
+      <span class="text-xl font-bold text-white tracking-tighter hover:scale-105 transition cursor-pointer">XC<span
+          class="text-green-400">.</span></span>
       <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
-        <a href="#about" class="hover:text-green-400 transition">Sobre mí</a>
-        <a href="#projects" class="hover:text-green-400 transition">Proyectos</a>
-        <a href="#skills" class="hover:text-green-400 transition">Habilidades</a>
-        <a href="#contact" class="bg-green-600 px-4 py-2 rounded text-white hover:bg-green-500 transition">Contacto</a>
+        <a href="#about" class="hover:text-green-400 transition hover:-translate-y-0.5 inline-block">Perfil</a>
+        <a href="#experience"
+          class="hover:text-green-400 transition hover:-translate-y-0.5 inline-block">Trayectoria</a>
+        <a href="#projects" class="hover:text-green-400 transition hover:-translate-y-0.5 inline-block">Proyectos</a>
+        <a href="#skills" class="hover:text-green-400 transition hover:-translate-y-0.5 inline-block">Skills</a>
+        <a href="https://api.whatsapp.com/send?phone=584124058371" target="_blank"
+          class="bg-green-600/90 hover:bg-green-500 px-5 py-2 rounded text-white transition shadow-lg">Contacto</a>
       </div>
     </div>
   </nav>
 
-  <section id="about" class="pt-32 pb-20 px-6">
-    <div class="container mx-auto max-w-5xl">
-      <div class="flex flex-col md:flex-row items-center gap-12">
-        <div class="flex-1">
-          <span class="text-green-400 font-mono mb-4 block animate-pulse">Available for new projects</span>
-          <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
+  <section id="about" class="pt-40 pb-20 px-6 min-h-screen flex items-center relative print:pt-10 print:min-h-0">
+    <div class="container mx-auto max-w-6xl">
+      <div class="flex flex-col-reverse md:flex-row items-center gap-12 lg:gap-20">
+
+        <div class="flex-1 text-center md:text-left" data-aos="fade-right">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-900/20 border border-green-500/20 text-green-400 text-xs font-mono mb-6 animate-pulse print:hidden">
+            <span class="w-2 h-2 rounded-full bg-green-500"></span> Disponible para Consultoría / Proyectos
+          </div>
+
+          <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight no-print">
             Xavier <span class="text-gradient">Campechano</span>
           </h1>
-          <p class="text-xl text-slate-400 mb-8 leading-relaxed">
-            Ingeniero en Informática especializado en el desarrollo de soluciones web modernas y arquitectura de redes
-            médicas (PACS/DICOM).
-            <span class="block mt-2 text-sm italic text-slate-500 underline uppercase tracking-tighter">
-              IT Engineer specialized in modern web development and medical network architecture.
-            </span>
+          <h1 class="text-4xl font-extrabold text-slate-900 mb-2 hidden print:block">
+            Xavier Campechano
+          </h1>
+          <h2 class="text-2xl text-green-600 font-bold mb-6 hidden print:block">
+            Senior IT Engineer & Fullstack Developer
+          </h2>
+
+          <div class="h-8 mb-4 no-print">
+            <span id="typed-output" class="text-xl md:text-2xl text-green-400 font-semibold"></span>
+          </div>
+
+          <p class="text-lg text-slate-400 mb-8 leading-relaxed max-w-2xl mx-auto md:mx-0 print:text-slate-800">
+            Ingeniero en Informática con más de 12 años de experiencia fusionando el <strong>desarrollo de software
+              fullstack</strong>, la administración robusta de <strong>infraestructura de redes</strong> y la tecnología
+            médica crítica (<strong>HealthTech/DICOM</strong>). Experto en identificar cuellos de botella y diseñar
+            soluciones automatizadas que reducen drásticamente costos y tiempos operativos. Liderazgo probado bajo
+            metodologías Ágiles (Scrum).
           </p>
-          <div class="flex flex-wrap gap-4">
-            <a href="#projects"
-              class="bg-white text-slate-950 px-8 py-3 rounded-full font-bold hover:scale-105 transition transform">Ver
-              Proyectos / View Work</a>
-            <div class="flex items-center gap-4 text-2xl ml-4">
-              <a href="https://linkedin.com/in/xavier-suarez-b91479100/" class="hover:text-white transition"><i
-                  class="fab fa-linkedin"></i></a>
-              <a href="mailto:alejandrosuarez242@gmail.com" class="hover:text-white transition"><i
-                  class="fas fa-envelope"></i></a>
+
+          <div class="flex flex-wrap justify-center md:justify-start gap-4 no-print">
+            <a href="#experience"
+              class="bg-white text-slate-950 px-8 py-3.5 rounded-full font-bold hover:scale-105 transition transform flex items-center gap-2">
+              Ver Trayectoria <i class="fas fa-arrow-down"></i>
+            </a>
+
+            <button onclick="window.print()"
+              class="px-8 py-3.5 rounded-full font-bold border border-white/20 text-white hover:bg-white/5 transition flex items-center gap-2 group">
+              <i class="fas fa-file-pdf group-hover:translate-y-1 transition"></i> Imprimir / Guardar PDF
+            </button>
+          </div>
+
+          <div class="hidden print:flex flex-col gap-2 mt-4 text-sm text-slate-700">
+            <p><i class="fas fa-envelope mr-2"></i> alejandrosuarez242@gmail.com</p>
+            <p><i class="fab fa-whatsapp mr-2"></i> +58 412 4058371</p>
+            <p><i class="fab fa-linkedin mr-2"></i> linkedin.com/in/xavier-suarez-b91479100/</p>
+          </div>
+
+          <div class="flex justify-center md:justify-start items-center gap-6 mt-10 text-2xl text-slate-500 no-print">
+            <a href="https://linkedin.com/in/xavier-suarez-b91479100/" target="_blank"
+              class="hover:text-white hover:scale-110 transition"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/alejandrosuarez231" target="_blank"
+              class="hover:text-white hover:scale-110 transition"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+
+        <div id="hero-image-container" class="relative w-64 h-64 md:w-80 md:h-80 no-print" data-aos="fade-left">
+          <div
+            class="absolute inset-0 bg-gradient-to-tr from-green-500 to-cyan-400 blur-[60px] opacity-40 rounded-full animate-pulse">
+          </div>
+          <img src="img/profile.jpg" alt="Xavier Campechano"
+            class="relative z-10 w-full h-full object-cover rounded-2xl border-2 border-white/10 shadow-2xl rotate-3 hover:rotate-0 transition duration-500">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="py-24 relative print:py-10">
+    <div class="container mx-auto px-6 max-w-5xl">
+      <div class="mb-16 print:mb-8" data-aos="fade-up">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 flex items-center gap-4 print:text-slate-900">
+          <span class="h-8 w-1 bg-green-500 rounded-full"></span> Trayectoria Profesional
+        </h2>
+        <p class="text-slate-400 print:text-slate-700">Evolución estratégica desde soporte técnico hasta liderazgo de
+          proyectos y consultoría especializada.</p>
+      </div>
+
+      <div class="relative space-y-12">
+        <div class="absolute left-4 md:left-1/2 h-full w-0.5 bg-slate-800/50 -translate-x-1/2 print:bg-slate-300"></div>
+
+        <div class="relative flex flex-col md:flex-row items-center print-break-inside-avoid" data-aos="fade-up">
+          <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 relative top-6 md:top-0">
+            <h3 class="text-xl font-bold text-white print:text-slate-900">Consultor IT & Especialista en Tecnología
+              Médica</h3>
+            <p class="text-green-400 font-medium mb-2 print:text-green-700">Sociedad Anticancerosa del Estado Aragua
+              (Asesor Externo)</p>
+            <span class="text-sm text-slate-500 block mb-4 print:text-slate-600">2018 - Presente</span>
+            <p class="text-slate-400 text-sm leading-relaxed print:text-slate-800">
+              Retenido como asesor clave tras mi renuncia para garantizar la continuidad operativa. Supervisión de
+              mantenimiento de equipos críticos (mamógrafo, tomosíntesis, RX, acelerador lineal). Resolución de
+              problemas técnicos complejos en hardware médico y software especializado (Mosaiq, iView, Planner).
+              Integración de sistemas administrativos (Galac).
+            </p>
+          </div>
+          <div
+            class="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 bg-green-500 rounded-full border-4 border-slate-950 z-10 order-1 md:order-2 flex items-center justify-center print:border-white">
+            <i class="fas fa-briefcase text-white text-xs"></i>
+          </div>
+          <div class="md:w-1/2 md:pl-12 order-3 hidden md:block"></div>
+        </div>
+
+        <div class="relative flex flex-col md:flex-row items-center print-break-inside-avoid" data-aos="fade-up">
+          <div class="md:w-1/2 md:pr-12 hidden md:block order-1"></div>
+          <div
+            class="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 bg-blue-500 rounded-full border-4 border-slate-950 z-10 order-1 flex items-center justify-center print:border-white">
+            <i class="fas fa-code text-white text-xs"></i>
+          </div>
+          <div class="md:w-1/2 md:pl-12 order-2 relative top-6 md:top-0">
+            <h3 class="text-xl font-bold text-white print:text-slate-900">Project Leader & Fullstack Developer (Remoto)
+            </h3>
+            <p class="text-blue-400 font-medium mb-2 print:text-blue-700">Vesta (Panamá) / Metaproducciones (Chile)</p>
+            <span class="text-sm text-slate-500 block mb-4 print:text-slate-600">2017 - 2019 (Aprox. 2 años)</span>
+            <p class="text-slate-400 text-sm leading-relaxed print:text-slate-800">
+              Ascendido de desarrollador a Líder de Proyecto por antigüedad y capacidad técnica. Gestión de equipos de 3
+              desarrolladores bajo metodología <strong>Scrum</strong>. Responsable de la asignación de Sprints, revisión
+              de código, despliegue a producción y definición de nuevas funcionalidades directamente con clientes
+              internacionales.
+            </p>
+          </div>
+        </div>
+
+        <div class="relative flex flex-col md:flex-row items-center print-break-inside-avoid" data-aos="fade-up">
+          <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 relative top-6 md:top-0">
+            <h3 class="text-xl font-bold text-white print:text-slate-900">Coordinador de Soporte Técnico / Analista de
+              Sistemas</h3>
+            <p class="text-green-400 font-medium mb-2 print:text-green-700">Sociedad Anticancerosa del Estado Aragua</p>
+            <span class="text-sm text-slate-500 block mb-4 print:text-slate-600">Inicios de trayectoria - 2018</span>
+            <p class="text-slate-400 text-sm leading-relaxed print:text-slate-800">
+              Administración de servidores Windows y rediseño completo de la topología de red con tecnología
+              <strong>TP-Link Omada</strong> según requerimientos técnicos. Desarrollo in-house de múltiples sistemas
+              web (Laravel/Bootstrap) para automatizar RRHH, control de personal durante pandemia y gestión de jornadas
+              médicas, eliminando procesos manuales propensos a errores.
+            </p>
+          </div>
+          <div
+            class="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 bg-purple-500 rounded-full border-4 border-slate-950 z-10 order-1 flex items-center justify-center print:border-white">
+            <i class="fas fa-server text-white text-xs"></i>
+          </div>
+          <div class="md:w-1/2 md:pl-12 order-3 hidden md:block"></div>
+        </div>
+
+        <div class="relative flex flex-col md:flex-row items-center print-break-inside-avoid" data-aos="fade-up">
+          <div class="md:w-1/2 md:pr-12 hidden md:block order-1"></div>
+          <div
+            class="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 bg-slate-700 rounded-full border-4 border-slate-950 z-10 order-1 flex items-center justify-center print:border-white">
+            <i class="fas fa-database text-white text-xs"></i>
+          </div>
+          <div class="md:w-1/2 md:pl-12 order-2 relative top-6 md:top-0">
+            <h3 class="text-xl font-bold text-white print:text-slate-900">Analista de Sistemas (Colaborador RRHH)</h3>
+            <p class="text-slate-400 font-medium mb-2 print:text-slate-600">CEDOCABAR (Centro Docente Cardiológico
+              Bolivariano)</p>
+            <span class="text-sm text-slate-500 block mb-4 print:text-slate-600">2 años</span>
+            <p class="text-slate-400 text-sm leading-relaxed print:text-slate-800">
+              Colaboración directa con el departamento de RRHH para la auditoría y corrección de cálculos complejos de
+              nómina en el sistema existente, mejorando la precisión de los resultados financieros.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="py-24 relative bg-slate-900/30 print:bg-white print:py-10">
+    <div class="container mx-auto px-6 max-w-6xl">
+      <div class="mb-16 print:mb-8" data-aos="fade-up">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 flex items-center gap-4 print:text-slate-900">
+          <span class="h-8 w-1 bg-green-500 rounded-full"></span> Proyectos e Implementaciones Clave
+        </h2>
+        <p class="text-slate-400 print:text-slate-700">Soluciones desarrolladas enfocadas en automatización y eficiencia
+          operativa.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+
+        <div
+          class="group bg-slate-900/50 backdrop-blur-sm border border-white/5 rounded-2xl overflow-hidden hover:border-green-500/30 transition duration-300 print:bg-slate-50 print:border-slate-200 print-break-inside-avoid"
+          data-aos="fade-up">
+          <div class="p-8 h-full flex flex-col">
+            <div class="flex justify-between items-start mb-6">
+              <div
+                class="bg-green-500/10 text-green-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider print:bg-green-100 print:text-green-800">
+                En Desarrollo / API Integration</div>
+              <i
+                class="fas fa-fingerprint text-slate-700 text-xl group-hover:text-green-500 transition print:text-slate-400"></i>
+            </div>
+
+            <h3 class="text-2xl font-bold text-white mb-3 print:text-slate-900">Sincronización Biométrica Hikvision +
+              Galac Nómina</h3>
+            <p class="text-slate-400 text-sm mb-6 flex-grow leading-relaxed print:text-slate-700">
+              Desarrollo de un middleware para automatizar la carga de "adpersonales" (asistencia) sincronizando los
+              datos de dispositivos biométricos Hikvision directamente con el sistema de nómina Galac.
+              <span class="block mt-2 text-slate-500 border-l-2 border-green-500/50 pl-3 italic print:text-slate-600">
+                Objetivo: Reducción drástica del tiempo de procesamiento manual por parte de los analistas de nómina.
+              </span>
+            </p>
+
+            <div class="flex flex-wrap gap-2 mb-6 text-xs text-slate-500 font-mono print:text-slate-600">
+              <span class="px-2 py-1 bg-slate-800 rounded print:bg-slate-200">API Integration</span>
+              <span class="px-2 py-1 bg-slate-800 rounded print:bg-slate-200">Hikvision SDK</span>
+              <span class="px-2 py-1 bg-slate-800 rounded print:bg-slate-200">Automatización SQL</span>
             </div>
           </div>
         </div>
-        <div class="w-64 h-64 relative">
-          <div class="absolute inset-0 bg-green-500 blur-3xl opacity-20 rounded-full"></div>
-          <img src="img/profile.png" alt="Xavier"
-            class="relative z-10 rounded-2xl border border-white/10 grayscale hover:grayscale-0 transition duration-500">
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section id="projects" class="py-20 bg-slate-900/30">
-    <div class="container mx-auto px-6 max-w-5xl">
-      <h2 class="text-3xl font-bold text-white mb-12 flex items-center gap-4">
-        <span class="h-px w-12 bg-green-500"></span> Proyectos Seleccionados / Portfolio
-      </h2>
-
-      <div class="grid md:grid-cols-2 gap-8">
         <div
-          class="group bg-slate-900 border border-white/5 rounded-2xl overflow-hidden hover:border-green-500/30 transition">
-          <div class="p-8">
-            <div class="text-green-400 text-xs font-mono mb-2">Medical Tech / Laravel / DICOM</div>
-            <h3 class="text-2xl font-bold text-white mb-4">Plataforma Gestión Médica SAE Aragua</h3>
-            <p class="text-slate-400 text-sm mb-6">Implementación de flujos de trabajo DICOM y soporte técnico
-              especializado para optimizar diagnósticos por imagen.</p>
-            <a href="#"
-              class="inline-flex items-center text-white text-sm font-bold gap-2 hover:gap-4 transition-all">Explorar
-              Caso <i class="fas fa-arrow-right text-green-400"></i></a>
+          class="group bg-slate-900/50 backdrop-blur-sm border border-white/5 rounded-2xl overflow-hidden hover:border-green-500/30 transition duration-300 print:bg-slate-50 print:border-slate-200 print-break-inside-avoid"
+          data-aos="fade-up" data-aos-delay="100">
+          <div class="p-8 h-full flex flex-col">
+            <div class="flex justify-between items-start mb-6">
+              <div
+                class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider print:bg-blue-100 print:text-blue-800">
+                Fullstack / Process Optimization</div>
+              <i
+                class="fas fa-hospital-user text-slate-700 text-xl group-hover:text-blue-500 transition print:text-slate-400"></i>
+            </div>
+
+            <h3 class="text-2xl font-bold text-white mb-3 print:text-slate-900">Plataforma de Gestión de Jornadas
+              Médicas (SAEA)</h3>
+            <p class="text-slate-400 text-sm mb-6 flex-grow leading-relaxed print:text-slate-700">
+              Desarrollo iterativo de un sistema integral para eliminar cuellos de botella operativos. Versiones
+              posteriores incluyeron estadísticas en tiempo real, seguridad mejorada y entrega digital de resultados a
+              pacientes.
+              <span class="block mt-2 text-slate-500 border-l-2 border-blue-500/50 pl-3 italic print:text-slate-600">
+                Impacto: Reducción significativa de tiempos de espera y errores humanos entre jornadas consecutivas.
+              </span>
+            </p>
+
+            <div class="flex flex-wrap gap-2 mb-6 text-xs text-slate-500 font-mono print:text-slate-600">
+              <span class="px-2 py-1 bg-slate-800 rounded print:bg-slate-200">Laravel Stack</span>
+              <span class="px-2 py-1 bg-slate-800 rounded print:bg-slate-200">MySQL</span>
+              <span class="px-2 py-1 bg-slate-800 rounded print:bg-slate-200">Bootstrap UI</span>
+            </div>
           </div>
         </div>
 
         <div
-          class="group bg-slate-900 border border-white/5 rounded-2xl overflow-hidden hover:border-green-500/30 transition">
-          <div class="p-8">
-            <div class="text-green-400 text-xs font-mono mb-2">Web Design / PHP / MySQL</div>
-            <h3 class="text-2xl font-bold text-white mb-4">Consultoría & Arquitectura de Red</h3>
-            <p class="text-slate-400 text-sm mb-6">Diseño de infraestructuras escalables para empresas, integrando
-              software administrativo (Galac) y seguridad de red.</p>
-            <a href="#"
-              class="inline-flex items-center text-white text-sm font-bold gap-2 hover:gap-4 transition-all">Explorar
-              Caso <i class="fas fa-arrow-right text-green-400"></i></a>
+          class="group bg-slate-900/50 backdrop-blur-sm border border-white/5 rounded-2xl overflow-hidden hover:border-green-500/30 transition duration-300 print:bg-slate-50 print:border-slate-200 print-break-inside-avoid"
+          data-aos="fade-up" data-aos-delay="200">
+          <div class="p-8 h-full flex flex-col">
+            <div class="flex justify-between items-start mb-6">
+              <div
+                class="bg-purple-500/10 text-purple-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider print:bg-purple-100 print:text-purple-800">
+                Internal Tools / RRHH</div>
+              <i
+                class="fas fa-users-cog text-slate-700 text-xl group-hover:text-purple-500 transition print:text-slate-400"></i>
+            </div>
+
+            <h3 class="text-2xl font-bold text-white mb-3 print:text-slate-900">Suite de Herramientas Internas RRHH</h3>
+            <p class="text-slate-400 text-sm mb-6 flex-grow leading-relaxed print:text-slate-700">
+              Desarrollo de múltiples módulos para sustituir procesos manuales críticos: Sistema de Control de
+              Exoneraciones, Generador Automático de formatos para entes gubernamentales (Mintra/Humaniz) y Bitácora de
+              síntomas COVID-19.
+              <span class="block mt-2 text-slate-500 border-l-2 border-purple-500/50 pl-3 italic print:text-slate-600">
+                Resultado: Garantía de fidelidad de datos y minimización de errores técnicos en reportes oficiales.
+              </span>
+            </p>
+
+            <div class="flex flex-wrap gap-2 mb-6 text-xs text-slate-500 font-mono print:text-slate-600">
+              <span class="px-2 py-1 bg-slate-800 rounded print:bg-slate-200">PHP/Laravel</span>
+              <span class="px-2 py-1 bg-slate-800 rounded print:bg-slate-200">Automatización de Documentos</span>
+            </div>
           </div>
         </div>
+
+        <div
+          class="group bg-slate-900/50 backdrop-blur-sm border border-white/5 rounded-2xl overflow-hidden hover:border-green-500/30 transition duration-300 print:bg-slate-50 print:border-slate-200 print-break-inside-avoid"
+          data-aos="fade-up" data-aos-delay="300">
+          <div class="p-8 h-full flex flex-col">
+            <div class="flex justify-between items-start mb-6">
+              <div
+                class="bg-red-500/10 text-red-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider print:bg-red-100 print:text-red-800">
+                Infraestructura IT</div>
+              <i
+                class="fas fa-network-wired text-slate-700 text-xl group-hover:text-red-500 transition print:text-slate-400"></i>
+            </div>
+
+            <h3 class="text-2xl font-bold text-white mb-3 print:text-slate-900">Modernización de Infraestructura de Red
+            </h3>
+            <p class="text-slate-400 text-sm mb-6 flex-grow leading-relaxed print:text-slate-700">
+              Diseño e implementación de nueva topología de red y administración de Servidores Windows para la SAEA,
+              asegurando alta disponibilidad para aplicaciones críticas médicas y administrativas.
+              <span class="block mt-2 text-slate-500 border-l-2 border-red-500/50 pl-3 italic print:text-slate-600">
+                Tecnología: Implementación certificada de ecosistema TP-Link Omada SDN.
+              </span>
+            </p>
+
+            <div class="flex flex-wrap gap-2 mb-6 text-xs text-slate-500 font-mono print:text-slate-600">
+              <span class="px-2 py-1 bg-slate-800 rounded print:bg-slate-200">Windows Server Admin</span>
+              <span class="px-2 py-1 bg-slate-800 rounded print:bg-slate-200">TP-Link Omada Certified</span>
+              <span class="px-2 py-1 bg-slate-800 rounded print:bg-slate-200">Network Design</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <section id="skills" class="py-20">
+  <section id="skills" class="py-24 relative overflow-hidden print:py-10">
     <div class="container mx-auto px-6 max-w-5xl">
-      <h2 class="text-3xl font-bold text-white mb-12">Habilidades / Expertice</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="p-6 bg-slate-900 rounded-xl border border-white/5 text-center">
-          <i class="fab fa-laravel text-4xl text-red-500 mb-4"></i>
-          <p class="text-white font-medium">Laravel</p>
+      <div class="text-center mb-16 print:mb-8" data-aos="fade-up">
+        <h2 class="text-3xl font-bold text-white mb-4 print:text-slate-900">Stack Tecnológico & Experiencias</h2>
+        <p class="text-slate-400 print:text-slate-700">Conjunto de habilidades híbridas entre desarrollo,
+          infraestructura y sector salud.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 print:gap-4">
+
+        <div
+          class="p-6 bg-slate-900/80 backdrop-blur rounded-xl border border-white/5 text-center group hover:border-red-500/50 transition print:bg-slate-100 print:border-slate-300 print-break-inside-avoid">
+          <i class="fab fa-laravel text-4xl text-red-500 mb-4 block print:text-red-600"></i>
+          <p class="text-white font-bold mb-2 print:text-slate-900">Laravel Stack</p>
+          <span class="text-xs text-slate-500 block print:text-slate-600">PHP, MySQL, Bootstrap. Desarrollo de sistemas
+            a medida.</span>
         </div>
-        <div class="p-6 bg-slate-900 rounded-xl border border-white/5 text-center">
-          <i class="fab fa-js text-4xl text-yellow-400 mb-4"></i>
-          <p class="text-white font-medium">JavaScript</p>
+
+        <div
+          class="p-6 bg-slate-900/80 backdrop-blur rounded-xl border border-white/5 text-center group hover:border-yellow-500/50 transition print:bg-slate-100 print:border-slate-300 print-break-inside-avoid">
+          <i class="fas fa-tasks text-4xl text-yellow-400 mb-4 block print:text-yellow-600"></i>
+          <p class="text-white font-bold mb-2 print:text-slate-900">Scrum Master / Liderazgo</p>
+          <span class="text-xs text-slate-500 block print:text-slate-600">Gestión de equipos ágiles, asignación de
+            sprints y revisión de código.</span>
         </div>
-        <div class="p-6 bg-slate-900 rounded-xl border border-white/5 text-center">
-          <i class="fas fa-network-wired text-4xl text-blue-400 mb-4"></i>
-          <p class="text-white font-medium">Networking</p>
+
+        <div
+          class="p-6 bg-slate-900/80 backdrop-blur rounded-xl border border-white/5 text-center group hover:border-blue-500/50 transition print:bg-slate-100 print:border-slate-300 print-break-inside-avoid">
+          <i class="fas fa-network-wired text-4xl text-blue-400 mb-4 block print:text-blue-600"></i>
+          <p class="text-white font-bold mb-2 print:text-slate-900">Redes y Servidores</p>
+          <span class="text-xs text-slate-500 block print:text-slate-600">Certificación TP-Link Omada. Administración
+            Windows Server. Topología de red. Linux Ubuntu Server.</span>
         </div>
-        <div class="p-6 bg-slate-900 rounded-xl border border-white/5 text-center">
-          <i class="fas fa-microscope text-4xl text-purple-400 mb-4"></i>
-          <p class="text-white font-medium">DICOM/PACS</p>
+
+        <div
+          class="p-6 bg-slate-900/80 backdrop-blur rounded-xl border border-white/5 text-center group hover:border-purple-500/50 transition print:bg-slate-100 print:border-slate-300 print-break-inside-avoid">
+          <i class="fas fa-x-ray text-4xl text-purple-400 mb-4 block print:text-purple-600"></i>
+          <p class="text-white font-bold mb-2 print:text-slate-900">HealthTech & DICOM</p>
+          <span class="text-xs text-slate-500 block print:text-slate-600">Soporte a equipos (Mamógrafo, Acelerador
+            Lineal). Software: Mosaiq, iView, Planner. Desarrollo de RIS.</span>
+        </div>
+
+        <div
+          class="p-6 bg-slate-900/80 backdrop-blur rounded-xl border border-white/5 text-center group hover:border-green-500/50 transition col-span-2 md:col-span-4 mt-4 print:bg-slate-100 print:border-slate-300 print-break-inside-avoid">
+          <i class="fas fa-cogs text-3xl text-green-400 mb-4 block print:text-green-600"></i>
+          <p class="text-white font-bold mb-2 print:text-slate-900">Integración de Sistemas y Automatización</p>
+          <p class="text-sm text-slate-400 print:text-slate-600 max-w-2xl mx-auto">
+            Especialista en conectar plataformas dispares. Experiencia en integración con <strong>Galac Nómina</strong>
+            (ampliación de funcionalidades), SDK de biométricos <strong>Hikvision</strong> y colaboración directa con
+            proveedores de software médico (MD System) para corrección de bugs.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact-cta-section" class="py-20 mb-20 px-6 no-print">
+    <div class="container mx-auto max-w-4xl" data-aos="flip-up">
+      <div
+        class="bg-gradient-to-br from-green-600 to-teal-800 p-12 md:p-16 rounded-3xl text-center shadow-2xl shadow-green-900/20 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-16 -mt-16"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-3xl -ml-16 -mb-16"></div>
+
+        <h2 class="text-3xl md:text-5xl font-black text-white mb-6 relative z-10">¿Buscas un perfil híbrido de alto
+          nivel?</h2>
+        <p class="text-green-100 mb-10 text-lg max-w-xl mx-auto relative z-10">
+          Aporto la experiencia única de unir el desarrollo de software ágil con la gestión de infraestructura crítica y
+          tecnología médica.
+        </p>
+
+        <div class="flex flex-col md:flex-row justify-center gap-4 relative z-10">
+          <a href="mailto:alejandrosuarez242@gmail.com"
+            class="bg-white text-slate-900 px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-100 hover:scale-105 transition shadow-lg">
+            <i class="fas fa-envelope"></i> Contactar por Correo
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=584124058371" target="_blank"
+            class="bg-slate-900 text-white px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 hover:scale-105 transition border border-white/10 shadow-lg">
+            <i class="fab fa-whatsapp text-green-400"></i> Contactar por WhatsApp
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="py-20 mb-20 px-6">
-    <div
-      class="container mx-auto max-w-3xl bg-gradient-to-br from-green-600 to-cyan-700 p-12 rounded-3xl text-center shadow-2xl shadow-green-900/20">
-      <h2 class="text-4xl font-black text-white mb-4">¿Tienes una idea en mente?</h2>
-      <p class="text-green-100 mb-10 text-lg italic">"Hagamos realidad tus proyectos con tecnología de vanguardia."</p>
-      <div class="flex flex-col md:flex-row justify-center gap-6">
-        <a href="mailto:alejandrosuarez242@gmail.com"
-          class="bg-white text-slate-900 px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-100 transition">
-          <i class="fas fa-envelope"></i> Escríbeme ahora
-        </a>
-        <a href="https://api.whatsapp.com/send?phone=584124058371"
-          class="bg-slate-900 text-white px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition border border-white/10">
-          <i class="fab fa-whatsapp text-green-400"></i> WhatsApp
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="py-10 text-center text-slate-500 text-sm border-t border-white/5">
-    <p>&copy; 2026 Xavier Campechano. Hecho con Tailwind CSS & GitHub Pages.</p>
+  <footer class="py-10 text-center border-t border-white/5 bg-slate-950 relative z-10 no-print">
+    <p class="text-slate-500 text-sm mb-2">&copy; 2026 Xavier Campechano. Todos los derechos reservados.</p>
   </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+  <script>
+    AOS.init({
+      once: true,
+      offset: 50,
+      duration: 600,
+      easing: 'ease-out-cubic',
+    });
+
+    // Textos actualizados para reflejar los nuevos roles
+    var typed = new Typed('#typed-output', {
+      strings: [
+        'Senior IT Engineer.',
+        'Fullstack Developer.',
+        'Scrum Master & Team Lead.',
+        'Medical Tech Specialist (DICOM).'
+      ],
+      typeSpeed: 40,
+      backSpeed: 25,
+      backDelay: 2500,
+      loop: true
+    });
+  </script>
 
 </body>
 
